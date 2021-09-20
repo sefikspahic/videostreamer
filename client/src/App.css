@@ -1,17 +1,17 @@
-.page-section{
+.page-section {
   margin-top: 2rem;
 }
 
-.page-title{
+.page-title {
   margin-bottom: 2rem;
   font-size: 2rem;
 }
 
-.video-box{
+.video-box {
   margin-bottom: 2rem;
 }
 
-.stream-item{
+.stream-item {
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
@@ -19,14 +19,23 @@
   justify-content: space-between;
 }
 
-.stream-info{
+.stream-info {
   display: flex;
   flex-direction: column;
   margin-left: 2rem;
   margin-right: auto;
 }
 
-.stream-link{
+.stream-link {
   text-decoration: none;
   font-size: 1.4rem;
+}
+.navbar-button {
+  position: relative;
+  display: flex;
+ 
+  align-items: center;
+ 
+  padding-top: .5rem;
+  padding-bottom: .5rem;
 }

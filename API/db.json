@@ -1,0 +1,39 @@
+{
+  "streams": [
+    {
+      "id": 1,
+      "title": "Šefket",
+      "description": "o šefketu"
+    },
+    {
+      "id": 2,
+      "title": "Esmir",
+      "description": "pjeva"
+    },
+    {
+      "id": 3,
+      "title": "Esmir",
+      "description": "pjeva"
+    },
+    {
+      "id": 4,
+      "title": "Esmir",
+      "description": "ddd"
+    },
+    {
+      "id": 5,
+      "title": "Esmir",
+      "description": "skace"
+    },
+    {
+      "id": 6,
+      "title": "Mirso ",
+      "description": "Pjeva "
+    },
+    {
+      "id": 7,
+      "title": "Daniš",
+      "description": "danis placa rucak"
+    }
+  ]
+}

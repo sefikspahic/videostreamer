@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { BiLogOutCircle } from 'react-icons/bi';
 import { Link, useHistory } from "react-router-dom";
 
 import { ReactComponent as ReactLogo } from "../../assets/images/stream-photo.svg";
@@ -20,7 +21,10 @@ const StreamList = () => {
   };
   
   return (
+    <div>
+      <div className="navbar-brand"> <Button variant="danger" href="#"><BiLogOutCircle/> Sing Out</Button></div>
     <div className="page-section">
+     
       <h4 className="page-title">Streams</h4>
 
       <div className="stream-list">
@@ -76,6 +80,7 @@ const StreamList = () => {
       >
         Create new stream
       </Button>
+    </div>
     </div>
   );
 };
