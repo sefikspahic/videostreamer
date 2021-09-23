@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
-const StreamDelete = () => {
+const StreamDelete = (title, description) => {
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);

@@ -1,5 +1,5 @@
 import React,{ useStete, useEffect} from "react";
-import { read, update } from "../../services/index";
+import { update } from "../../services/index";
 import { Form, Button } from "react-bootstrap";
 
 const StreamEdit = (data, title, description) => {
