@@ -2,33 +2,34 @@
 import React, { useState, useEffect } from "react";
 import { list, insert } from "../../services/index";
 import { Form, Button } from "react-bootstrap";
+import { useHistory } from "react-router";
 
 const StreamCreate = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [data, setData] = useState([]);
-  const changeHandler1 = (e) => {
-    setTitle(e.target.value);
-  };
+  const history = useHistory();
 
-  const changeHandler2 = (e) => {
-    setDescription(e.target.value);
+  const [data, setData] = useState({
+    title: "",
+    description: ""
+  });
+ 
+  const onChange = (e) => {
+    const {name, value} = e.target;
+    setData({
+      ...data,
+      [name]: value
+    });
   };
-  const clickHandler = () => {
-    const newdata = {
-      id: data.length + 1,
-      title: title,
-      description: description,
+  
+  const onSubmit = () => {
+    const newItem = {
+      title: data.title,
+      description: data.description
     };
 
-    insert(newdata, (obj) => {
-      if (obj) return;
+    insert(newItem, () => { 
+      history.push("/");
     });
-    console.log(newdata);
   };
-  useEffect(() => {
-    list((obj) => setData(obj));
-  }, []);
 
   return (
     <div className="page-section">
@@ -36,15 +37,15 @@ const StreamCreate = () => {
       <Form>
         <Form.Group className="mb-3" controlId="title">
           <Form.Label>Title</Form.Label>
-          <Form.Control onChange={changeHandler1} type="text" placeholder="Enter title" />
+          <Form.Control name="title" onChange={onChange} type="text" placeholder="Enter title" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="description">
           <Form.Label>Description</Form.Label>
-          <Form.Control onChange={changeHandler2} type="text" placeholder="Enter description" />
+          <Form.Control name="description" onChange={onChange} type="text" placeholder="Enter description" />
         </Form.Group>
 
-        <Button variant="primary" onClick={clickHandler} type="submit">
+        <Button variant="primary" type="button" onClick={onSubmit}>
           Submit
         </Button>
       </Form>

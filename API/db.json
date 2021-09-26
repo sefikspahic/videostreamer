@@ -1,13 +1,8 @@
 {
   "streams": [
     {
-      "id": 1,
-      "title": "Šefket",
-      "description": "o šefketu"
-    },
-    {
       "id": 2,
-      "title": "Esmir",
+      "title": "Esmirii",
       "description": "pjeva"
     },
     {
@@ -26,24 +21,14 @@
       "description": "skace"
     },
     {
-      "id": 6,
-      "title": "Mirso ",
-      "description": "Pjeva "
-    },
-    {
-      "id": 7,
-      "title": "Daniš",
-      "description": "danis placa rucak"
-    },
-    {
-      "id": 8,
-      "title": "sefi",
-      "description": "fkdnvfdy"
-    },
-    {
       "id": 9,
-      "title": "This is my first sream",
-      "description": "description for my first stream"
+      "title": "This is my first stream",
+      "description": "123456789"
+    },
+    {
+      "title": "Sejoooo",
+      "description": "Sefikkkk",
+      "id": 10
     }
   ]
 }

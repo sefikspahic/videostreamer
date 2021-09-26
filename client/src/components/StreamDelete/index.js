@@ -1,15 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { remove, read } from "../../services/index";
+import { useHistory, useParams } from "react-router";
+
 import { Modal, Button } from "react-bootstrap";
 
-const StreamDelete = (title, description) => {
-  const [show, setShow] = useState(true);
+const StreamDelete = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const {id} = useParams();
+  const [data, setData] = useState([]);
+  
+  const toggle = () => setIsOpen(!isOpen);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (id !== "0") {
+      read( id, data => {
+        if (data) setData(data);
+      });
+    }
+  }, [id]);
+
+  const del = () => {
+    remove( id, data => {
+      history.push("/");
+    });
+  };
 
   return (
     <div className="page-section">
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={isOpen} onHide={toggle}>
         <Modal.Header>
           <Modal.Title>Delete stream</Modal.Title>
         </Modal.Header>
@@ -17,10 +37,13 @@ const StreamDelete = (title, description) => {
           Are you sure you want to delete the stream with title: {}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
+          <Button variant="danger" onClick={toggle} onClick={del}>
             Delete
           </Button>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={() => {
+            toggle();
+            history.push("/")
+          }}>
             Cancel
           </Button>
         </Modal.Footer>

@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { BiLogOutCircle } from "react-icons/bi";
 import { Link, useHistory } from "react-router-dom";
+import { ReactComponent as StreamLogo } from "../../assets/images/stream-photo.svg";
+
 import axios from "axios";
-import { ReactComponent as ReactLogo } from "../../assets/images/stream-photo.svg";
 
 const URL = "http://localhost:3001/streams";
-const StreamList = () => {
+const StreamList = (user) => {
   const [data, setData] = useState([]);
-  let history = useHistory();
+  const history = useHistory();
 
   const redirectToHome = () => {
     history.push("/streams/new");
   };
 
-  const removeStream = () => {
-    history.push("/streams/delete/55");
+  const removeStream = (id) => {
+    history.push(`/streams/delete/${id}`);
   };
 
-  const editStream = () => {
-    history.push("/streams/edit/55");
+  const editStream = (id) => {
+    history.push(`/streams/edit/${id}`);
   };
+
   useEffect(() => {
     axios
       .get(URL)
@@ -32,37 +33,31 @@ const StreamList = () => {
 
   return (
     <div>
-      <div className="navbar-brand">
-        {" "}
-        <Button variant="danger" href="#">
-          <BiLogOutCircle /> Sing Out
-        </Button>
-      </div>
       <div className="page-section">
         <h4 className="page-title">Streams</h4>
         <div className="stream-list">
-          <div className="stream-item">
-            <div></div>
-            <div className="stream-icon">
-              <ReactLogo width="30" height="30" />
+            <div className="stream-item">
+              <div></div>
+              <div className="stream-icon">
+                <StreamLogo width="30" height="30" />
+              </div>
+              <div className="stream-info">
+                <Link
+                  to={{
+                    pathname: "/streams/134",
+                  }}
+                  className="stream-link"
+                >
+                  My first stream
+                </Link>
+                <p>This is my first stream</p>
+              </div>
             </div>
-            <div className="stream-info">
-              <Link
-                to={{
-                  pathname: "/streams/134",
-                }}
-                className="stream-link"
-              >
-                My first stream
-              </Link>
-              <p>This is my first stream</p>
-            </div>
-          </div>
-          {data.map((obj) => {
+          {data.map((stream, idx) => {
             return (
-              <div className="stream-item">
+              <div className="stream-item" key={idx}>
                 <div className="stream-icon">
-                  <ReactLogo width="30" height="30" />
+                  <StreamLogo width="30" height="30" />
                 </div>
                 <div className="stream-info">
                   <Link
@@ -71,19 +66,19 @@ const StreamList = () => {
                     }}
                     className="stream-link"
                   >
-                    {obj.title},
+                    {stream.title}
                   </Link>
-                  <p>{obj.description}</p>
+                  <p>{stream.description}</p>
                 </div>
                 <div className="actions-btn">
                   <Button
                     variant="primary"
-                    onClick={editStream}
+                    onClick={() => editStream(stream.id)}
                     style={{ marginRight: "5px" }}
                   >
                     Edit
                   </Button>
-                  <Button variant="danger" onClick={removeStream}>
+                  <Button variant="danger" onClick={() => removeStream(stream.id)}>
                     Delete
                   </Button>
                 </div>

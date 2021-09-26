@@ -11,31 +11,35 @@ import "./App.css";
 import Header from "./components/Header";
 import { Container } from "react-bootstrap";
 
-function App() {
+import {useSelector, useDispatch} from 'react-redux';
+
+const App = () => {
+  const user = useSelector(state => state.user);
+
   return (
     <div className="videostreamer-app">
-      <Header />
-      <Container>
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <StreamList />
-          </Route>
-          <Route path="/streams/new">
-            <StreamCreate />
-          </Route>
-          <Route path="/streams/edit/:id">
-            <StreamEdit />
-          </Route>
-          <Route path="/streams/delete/:id">
-            <StreamDelete />
-          </Route>
-          <Route path="/streams/:id">
-            <StreamShow />
-          </Route>
-        </Switch>
+        <Header />
+        <Container>
+          <Switch>
+            <Route exact path="/">
+              <StreamList user={user} />
+            </Route>
+            <Route path="/streams/new">
+              <StreamCreate />
+            </Route>
+            <Route path="/streams/edit/:id">
+              <StreamEdit />
+            </Route>
+            <Route path="/streams/delete/:id">
+              <StreamDelete />
+            </Route>
+            <Route path="/streams/:id">
+              <StreamShow />
+            </Route>
+          </Switch>
+        </Container>
       </Router>
-      </Container>
     </div>
   );
 }
