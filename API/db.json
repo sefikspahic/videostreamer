@@ -1,34 +1,16 @@
 {
   "streams": [
     {
-      "id": 2,
-      "title": "Esmirii",
-      "description": "pjeva"
+      "title": "testing",
+      "description": "ddd",
+      "userId": "103555586192239905950",
+      "id": 2
     },
     {
-      "id": 3,
-      "title": "Esmir",
-      "description": "pjeva"
-    },
-    {
-      "id": 4,
-      "title": "Esmir",
-      "description": "ddd"
-    },
-    {
-      "id": 5,
-      "title": "Esmir",
-      "description": "skace"
-    },
-    {
-      "id": 9,
-      "title": "This is my first stream",
-      "description": "123456789"
-    },
-    {
-      "title": "Sejoooo",
-      "description": "Sefikkkk",
-      "id": 10
+      "title": "test",
+      "description": "proba",
+      "userId": "103555586192239905950",
+      "id": 3
     }
   ]
 }

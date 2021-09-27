@@ -5299,10 +5299,10 @@
     "inherits" "^2.0.3"
     "readable-stream" "^2.3.6"
 
-"flv.js@^1.6.1":
-  "integrity" "sha512-6/ffUPbFaYf7QsdcZC43PQmEsi9Fwlp89Oq0bz8gNlj0eSMUhyHFxESxuLNSFgIEle+ChxqoF7kL2pL7xdam2A=="
-  "resolved" "https://registry.npmjs.org/flv.js/-/flv.js-1.6.1.tgz"
-  "version" "1.6.1"
+"flv.js@^1.6.2":
+  "integrity" "sha512-xre4gUbX1MPtgQRKj2pxJENp/RnaHaxYvy3YToVVCrSmAWUu85b9mug6pTXF6zakUjNP2lFWZ1rkSX7gxhB/2A=="
+  "resolved" "https://registry.npmjs.org/flv.js/-/flv.js-1.6.2.tgz"
+  "version" "1.6.2"
   dependencies:
     "es6-promise" "^4.2.8"
     "webworkify-webpack" "^2.1.5"

@@ -1,35 +1,42 @@
-
 import React, { useState, useEffect } from "react";
-import { list, insert } from "../../services/index";
+import { insert } from "../../services/index";
 import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 
 const StreamCreate = () => {
   const history = useHistory();
+  const user = useSelector((state) => state.user);
 
   const [data, setData] = useState({
     title: "",
-    description: ""
+    description: "",
+    userId: user.googleId,
   });
- 
+
   const onChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setData({
       ...data,
-      [name]: value
+      [name]: value,
     });
   };
-  
+
   const onSubmit = () => {
     const newItem = {
       title: data.title,
-      description: data.description
+      description: data.description,
+      userId: data.userId,
     };
 
-    insert(newItem, () => { 
+    insert(newItem, () => {
       history.push("/");
     });
   };
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <div className="page-section">
@@ -37,19 +44,28 @@ const StreamCreate = () => {
       <Form>
         <Form.Group className="mb-3" controlId="title">
           <Form.Label>Title</Form.Label>
-          <Form.Control name="title" onChange={onChange} type="text" placeholder="Enter title" />
+          <Form.Control
+            name="title"
+            onChange={onChange}
+            type="text"
+            placeholder="Enter title"
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="description">
           <Form.Label>Description</Form.Label>
-          <Form.Control name="description" onChange={onChange} type="text" placeholder="Enter description" />
+          <Form.Control
+            name="description"
+            onChange={onChange}
+            type="text"
+            placeholder="Enter description"
+          />
         </Form.Group>
 
         <Button variant="primary" type="button" onClick={onSubmit}>
           Submit
         </Button>
       </Form>
-  
     </div>
   );
 };

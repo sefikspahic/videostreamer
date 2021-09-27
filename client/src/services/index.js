@@ -4,7 +4,6 @@ const URL = "http://localhost:3001/streams";
 const HEADERS = {
   "Content-Type": "application/json",
   Accept: "application/json",
-  "authorization": "bearer skdsdkw9iqwiwjsdkjakdsa999"
 };
 const list = (callBack) => {
     axios

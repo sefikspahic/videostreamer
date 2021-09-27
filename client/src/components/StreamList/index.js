@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { ReactComponent as StreamLogo } from "../../assets/images/stream-photo.svg";
+import { useSelector } from "react-redux";
 
 import axios from "axios";
-
+const CLIENT_ID =
+  "626046364349-dt83ji31j9mdhlf5k83lg0d27cjcigot.apps.googleusercontent.com";
 const URL = "http://localhost:3001/streams";
-const StreamList = (user) => {
+const StreamList = () => {
+  const user = useSelector((state) => state.user);
   const [data, setData] = useState([]);
+  const [show, setShow] = useState(false);
   const history = useHistory();
 
   const redirectToHome = () => {
@@ -15,10 +19,16 @@ const StreamList = (user) => {
   };
 
   const removeStream = (id) => {
+    if (!show === CLIENT_ID) {
+      setShow(true);
+    }
     history.push(`/streams/delete/${id}`);
   };
 
   const editStream = (id) => {
+    if (!show === CLIENT_ID) {
+      setShow(true);
+    }
     history.push(`/streams/edit/${id}`);
   };
 
@@ -30,29 +40,55 @@ const StreamList = (user) => {
       })
       .catch((erorr) => console.error(erorr));
   }, []);
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
+  const buttonShow = (stream) => {
+    return (
+      <div>
+        {user.googleId === stream.userId ? (
+          <div>
+            <Button
+              variant="primary"
+              onClick={() => editStream(stream.id)}
+              style={{ marginRight: "5px" }}
+            >
+              Edit
+            </Button>
+            <Button variant="danger" onClick={() => removeStream(stream.id)}>
+              Delete
+            </Button>
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div>
       <div className="page-section">
         <h4 className="page-title">Streams</h4>
         <div className="stream-list">
-            <div className="stream-item">
-              <div></div>
-              <div className="stream-icon">
-                <StreamLogo width="30" height="30" />
-              </div>
-              <div className="stream-info">
-                <Link
-                  to={{
-                    pathname: "/streams/134",
-                  }}
-                  className="stream-link"
-                >
-                  My first stream
-                </Link>
-                <p>This is my first stream</p>
-              </div>
+          <div className="stream-item">
+            <div></div>
+            <div className="stream-icon">
+              <StreamLogo width="30" height="30" />
             </div>
+            <div className="stream-info">
+              <Link
+                to={{
+                  pathname: "/streams/134",
+                }}
+                className="stream-link"
+              >
+                My first stream
+              </Link>
+              <p>This is my first stream</p>
+            </div>
+          </div>
           {data.map((stream, idx) => {
             return (
               <div className="stream-item" key={idx}>
@@ -62,7 +98,7 @@ const StreamList = (user) => {
                 <div className="stream-info">
                   <Link
                     to={{
-                      pathname: "/streams/134",
+                      pathname: `/streams/${stream.id}`,
                     }}
                     className="stream-link"
                   >
@@ -71,16 +107,7 @@ const StreamList = (user) => {
                   <p>{stream.description}</p>
                 </div>
                 <div className="actions-btn">
-                  <Button
-                    variant="primary"
-                    onClick={() => editStream(stream.id)}
-                    style={{ marginRight: "5px" }}
-                  >
-                    Edit
-                  </Button>
-                  <Button variant="danger" onClick={() => removeStream(stream.id)}>
-                    Delete
-                  </Button>
+                  {user === null ? <div></div> : buttonShow(stream)}
                 </div>
               </div>
             );
