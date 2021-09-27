@@ -72,23 +72,7 @@ const StreamList = () => {
       <div className="page-section">
         <h4 className="page-title">Streams</h4>
         <div className="stream-list">
-          <div className="stream-item">
-            <div></div>
-            <div className="stream-icon">
-              <StreamLogo width="30" height="30" />
-            </div>
-            <div className="stream-info">
-              <Link
-                to={{
-                  pathname: "/streams/134",
-                }}
-                className="stream-link"
-              >
-                My first stream
-              </Link>
-              <p>This is my first stream</p>
-            </div>
-          </div>
+         
           {data.map((stream, idx) => {
             return (
               <div className="stream-item" key={idx}>

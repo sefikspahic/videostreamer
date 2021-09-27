@@ -44,7 +44,7 @@ const Header = () => {
           }}
           onClick={() => history.push("/")}
         >
-          All streamsr
+          All streams
         </Navbar.Brand>
 
         <div className="navbar-brand">
