@@ -12,12 +12,14 @@ const StreamShow = () => {
     read(id, (streams) => setData(streams));
 
     initializeVideoStream();
+
+    return () => setData([]);
   }, [id]);
 
   const initializeVideoStream = () => {
     let player = flv.createPlayer({
-      type: "flv",
-      url: `http://localhost:8000/live/${id}`,
+      type: "flv",  
+      url: `http://localhost:8000/live/${id}.flv`,
     });
 
     player.attachMediaElement(video.current);
