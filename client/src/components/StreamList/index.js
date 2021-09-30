@@ -12,9 +12,12 @@ const StreamList = () => {
   const user = useSelector((state) => state.user);
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
+
   const history = useHistory();
 
   const redirectToHome = () => {
+    setShow(true);
+
     history.push("/streams/new");
   };
 
@@ -66,13 +69,12 @@ const StreamList = () => {
       </div>
     );
   };
-
+ 
   return (
     <div>
       <div className="page-section">
         <h4 className="page-title">Streams</h4>
         <div className="stream-list">
-         
           {data.map((stream, idx) => {
             return (
               <div className="stream-item" key={idx}>
@@ -97,14 +99,17 @@ const StreamList = () => {
             );
           })}
         </div>
-        <Button
-          variant="primary"
-          onClick={redirectToHome}
-          style={{ float: "right" }}
-        >
-          Create new stream
-        </Button>
-        <div></div> <p></p>
+        {user === null ? (
+          <div></div>
+        ) : (
+          <Button
+            variant="primary"
+            onClick={redirectToHome}
+            style={{ float: "right" }}
+          >
+            Create new stream
+          </Button>
+        )}
       </div>
     </div>
   );

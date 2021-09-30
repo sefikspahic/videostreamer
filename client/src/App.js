@@ -11,10 +11,10 @@ import "./App.css";
 import Header from "./components/Header";
 import { Container } from "react-bootstrap";
 
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
 
   return (
     <div className="videostreamer-app">
@@ -42,6 +42,6 @@ const App = () => {
       </Router>
     </div>
   );
-}
+};
 
 export default App;

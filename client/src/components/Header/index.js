@@ -26,6 +26,7 @@ const Header = () => {
   };
 
   const signOut = () => {
+    history.push(`/`);
     window.location.reload();
   };
 
@@ -60,7 +61,9 @@ const Header = () => {
                 clientId={CLIENT_ID}
                 buttonText="Logout"
                 onLogoutSuccess={signOut}
+                
               />
+              
             )}
           </Button>
         </div>
